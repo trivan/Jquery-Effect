@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<!-- PLOTKIT -->
+		<script type="text/javascript" src="js/plotkit/MochiKit.js"></script>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="js/plotkit/excanvas.js"></script><![endif]-->
+		<script type="text/javascript" src="js/plotkit/PlotKit_Packed.js"></script>
+
+		<!-- PLOTKIT -->
+		<script type="text/javascript">
+		  var data = {
+					items: [{label: 'September posts', data: 12015},
+						   {label: 'October posts', data: 23834},
+						   {label: 'November posts', data: 24689}]
+					};
+		  // PLOTKIT
+		  window.onload = function () {
+			var options = {
+				"IECanvasHTC": "../plotkit/iecanvas.htc",
+				"colorScheme": PlotKit.Base.palette(PlotKit.Base.baseColors()[0]),
+				"padding": {left: 10, right: 10, top: 10, bottom: 30},
+				"xTicks": [{v:0, label:data.items[0].label},
+				{v:1, label:data.items[1].label},
+				{v:2, label:data.items[2].label}],
+				"drawYAxis": false,
+				"pieRadius": 0.35
+			};
+			var layout = new PlotKit.Layout("pie", options);
+			 layout.addDataset("sqrt", [[0, data.items[0].data], [1, data.items[1].data], [2, data.items[2].data]]);
+			 layout.evaluate();
+			 var canvas = MochiKit.DOM.getElement("plotkitExample");
+			 var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, options);
+			 plotter.render(); 
+		  };
+		</script>
+	</head>
+	<body>
+	    <!-- PLOTKIT -->
+		<div id="plotkitExampleContainer">
+			<canvas id="plotkitExample" height="300" width="300"></canvas>
+		</div>
+    <a href="http://www.artetics.com/Articles/using-various-javascript-libraries-to-create-pie-chart" title="Using various javascript libraries to create pie chart">back to the article</a>: Using various javascript libraries to create pie chart
+	</body>
+</html>

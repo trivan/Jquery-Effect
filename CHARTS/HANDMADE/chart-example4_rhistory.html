@@ -1,0 +1,106 @@
+<html>
+<head>
+<!--<script src="amcharts.js" type="text/javascript"></script>-->
+<script type="text/javascript">
+var chart;
+
+var chartData = [{
+	start:'2009-01',
+	finish:'2010-04',
+    title: "UX Designer",
+    company:'Symplicit',
+	c4impact:'false'},
+{
+	start:'2011-01',
+	finish:'2011-04',
+    title: "UX Designer",
+    company:'4impact',
+	c4impact:'true'},
+{
+	start:'2011-04',
+	finish:'2011-08',
+    title: "UX Designer",
+    company:'Cogent Consulting',
+	c4impact:'false'},
+{
+	start:'2011-08',
+	finish:'2011-12',
+    title: "UX Designer",
+    company:'Flight Center',
+	c4impact:'false'},
+{
+	start:'2012-01',
+	finish:'2013-05',
+    title: "UI/UX Designer",
+    company:'4impact',
+	c4impact:'true'}];
+
+	var fisrtDate = chartData[0].start.split("-");
+	var lastDate = chartData[chartData.length-1].finish.split("-");
+	
+	function monthDiff(d1, d2) {
+		var months;
+		months = (d2.getFullYear() - d1.getFullYear()) * 12;
+		months -= d1.getMonth();
+		months += d2.getMonth();
+		return months <= 0 ? 0 : months;
+	}
+
+	var firstMonth = (fisrtDate[1]*1) - 1;
+	var lastMonth = (lastDate[1]*1) - 1;
+	var countMonth = monthDiff(
+		new Date(fisrtDate[0], firstMonth, 1), // November 4th, 2008
+		new Date(lastDate[0], firstMonth, 1)  // March 12th, 2010
+	);
+	console.log(countMonth);
+
+	var percentforHistory = Math.round(1500/(countMonth));
+	
+
+</script>
+<style>
+.history{margin-right:6px;float:left;height:10px;border-radius:10px;float:left;}
+.history-line{float:left;height:160px;float:left;}
+.history-part{float:left;}
+.title-history{padding-left:10px;padding-right:10px;}
+
+.block-his{margin-right:6px;float:left;border-radius:10px;float:left;color:white;}
+</style>
+</head>
+
+<body>
+
+<div id="chartdiv" style="width: 1500px; height: 400px;padding-top:50px;float:left;background-color:#333;padding-left:10px;">
+	<script>
+	
+	for(var i=0;i<chartData.length;i++){
+		var fisrtD = chartData[i].start.split("-");
+		var lastD = chartData[i].finish.split("-");
+
+		var firstMonth2 = (fisrtD[1] * 1) -1;
+		var lastMonth2 = (lastD[1] * 1) -1;
+	
+		var countMonthForEach = monthDiff(
+			new Date(fisrtD[0], firstMonth2, 1),
+			new Date(lastD[0], lastMonth2, 1)
+		);
+		console.log(countMonthForEach);
+		var mixpx = Math.round(countMonthForEach * percentforHistory);
+		var color="";
+		switch(chartData[i].c4impact){
+			case 'true': {color = "blue";break;}
+			case 'false': {color = "green";break;}
+		}
+		var string = "<div class='block-his' style='width:"+mixpx+"px'>"+fisrtD[0]+"<br/><div class='block-his' style='height:10px;background-color:"+color+";width:"+mixpx+"px'></div>";
+		string += "<div style='float:left;margin-left:5px;border-left:2px solid "+color+";'><br/><br/>";
+		string += "<div class='history-part' style='width:"+mixpx+"px'><span class='title-history' style='background-color:"+color+"'>"+chartData[i].title+"@"+chartData[i].company+"</span></div>";
+		string += "</div></div>";
+		document.write(string);
+	}
+	</script>
+	<div class="history"><br/><div style='background-color:blue;width:50px;' class="history"></div></div>
+	<div class="history"><br/><div style='background-color:blue;width:50px;' class="history"></div></div>
+</div>
+
+</body>
+</html>

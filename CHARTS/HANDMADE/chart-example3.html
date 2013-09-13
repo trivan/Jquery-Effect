@@ -1,0 +1,72 @@
+<html>
+<head>
+<script src="amcharts_customforpie.js" type="text/javascript"></script>
+<script type="text/javascript">
+var chart;
+var legend;
+
+var chartData = [{
+    Industries: "Finance",
+    litres: 32,
+	color:"174,205,111"},
+{
+    Industries: "Government",
+    litres: 60,
+	color:"11,128,195"},
+{
+    Industries: "Other",
+    litres: 15,
+	color:"161,162,164"},
+{
+    Industries: "Transport",
+    litres: 15,
+	color:"224,146,46"},
+{
+    Industries: "Oil, Mining & Gas",
+    litres: 25,
+	color:"244,205,48"}];
+
+AmCharts.ready(function() {
+
+	function colorToHex(color) {
+		if (color.substr(0, 1) === '#') {return color;}
+		var digits = /(.*?)rgb\((\d+),(\d+),(\d+)\)/.exec(color);
+		
+		var red = parseInt(digits[2]);
+		var green = parseInt(digits[3]);
+		var blue = parseInt(digits[4]);
+		
+		var rgb = blue | (green << 8) | (red << 16);
+		return digits[1] + '#' + rgb.toString(16);
+	};
+
+	var color="";
+	for(var i=0;i<chartData.length;i++){
+		var colorRGB = chartData[i].color;
+		colorRGB = "rgb("+colorRGB+")";
+		var hexcolor = colorToHex(colorRGB);
+		color += hexcolor + " ";
+	}
+	
+	//alert(color);
+
+    // PIE CHART
+	color = color.split(" ");
+    chart = new AmCharts.AmPieChart(color);
+    chart.dataProvider = chartData;
+    chart.titleField = "Industries";
+    chart.valueField = "litres";
+    chart.outlineColor = "#000";
+    chart.outlineAlpha = 0.4;
+    chart.outlineThickness = 1;
+
+    // WRITE
+    chart.write("chartdiv");
+});
+</script>
+</head>
+
+<body>
+<div id="chartdiv" style="width: 100%; height: 362px;"></div>
+</body>
+</html>

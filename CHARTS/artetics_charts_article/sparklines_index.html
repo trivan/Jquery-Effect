@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<!-- SPARKLINES -->
+		<script language="javascript" src="js/sparklines/jquery.js" type="text/javascript"></script>
+		<script language="javascript" src="js/sparklines/sparklines.js" type="text/javascript"></script>
+		<!-- SPARKLINES -->
+		<script type="text/javascript">
+		  var data = {
+					items: [{label: 'September posts', data: 12015},
+						   {label: 'October posts', data: 23834},
+						   {label: 'November posts', data: 24689}]
+					};
+		  var inlineString = '';
+		  for (i in data.items) {
+			var item = data.items[i];
+			inlineString += item.data + ',';
+		  }
+		  inlineString = inlineString.substring(0, inlineString.length-1);
+		  // SPARKLINES
+		  jQuery(function() {
+			  jQuery('#sparklinesExample').html(inlineString);
+			  jQuery('#sparklinesExample').sparkline('html', { type: 'pie', height: '7.0em' });
+		  });
+		</script>
+	</head>
+	<body>
+	    <!-- SPARKLINES -->
+		<span id="sparklinesExample"></span>
+    <a href="http://www.artetics.com/Articles/using-various-javascript-libraries-to-create-pie-chart" title="Using various javascript libraries to create pie chart">back to the article</a>: Using various javascript libraries to create pie chart
+	</body>
+</html>

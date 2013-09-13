@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<!-- RAPHAEL -->
+		<script language="javascript" src="js/raphael/raphael.js" type="text/javascript"></script>
+		<script language="javascript" src="js/raphael/pie.js" type="text/javascript"></script>
+		<!-- RAPHAEL -->
+		<script type="text/javascript">
+		  var data = {
+					items: [{label: 'September posts', data: 12015},
+						   {label: 'October posts', data: 23834},
+						   {label: 'November posts', data: 24689}]
+					};
+		  var labels = [];
+		  var values = [];
+		  for (i in data.items) {
+			var item = data.items[i];
+			labels.push(item.label);
+			values.push(item.data);
+		  }
+		  // RAPHAEL
+		  window.onload = function () {
+			Raphael("raphaelExample", 700, 700).pieChart(350, 350, 200, values, labels, [], "#fff");
+          };
+		</script>
+	</head>
+	<body>
+	    <!-- RAPHAEL -->
+		<div id="raphaelExample"></div>
+    <a href="http://www.artetics.com/Articles/using-various-javascript-libraries-to-create-pie-chart" title="Using various javascript libraries to create pie chart">back to the article</a>: Using various javascript libraries to create pie chart
+	</body>
+</html>
